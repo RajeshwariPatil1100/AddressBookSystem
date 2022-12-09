@@ -33,7 +33,7 @@ namespace AddressBookSystem
         }
         public void DisplayContact()
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("************Contact***********");
             Console.ResetColor();
             foreach (Contact records in data)
@@ -46,8 +46,6 @@ namespace AddressBookSystem
                 Console.WriteLine("Zip - " + records.Zip);
                 Console.WriteLine("PhoneNumber - " + records.Phone);
                 Console.WriteLine("Email ID - " + records.Email);
-
-
             }
         }
         public void EditContact()
@@ -110,6 +108,28 @@ namespace AddressBookSystem
                     Console.ResetColor();
                 }
 
+            }
+        }
+        public void DeleteContact()
+        {
+            Console.WriteLine("To Delete Contact From Address Book Enter FirstName Of Person");
+            string name = Console.ReadLine();
+            foreach (var record in data.ToList())
+            {
+                if (record.Firstname == name)
+                {
+                    data.Remove(record);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Person Details Delete Succesfully");
+                    Console.ResetColor();
+
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Given Name Does not Exist in Address Book");
+                    Console.ResetColor();
+                }
             }
         }
     }
